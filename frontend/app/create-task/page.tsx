@@ -9,6 +9,9 @@ type Profile = {
   full_name: string | null;
 };
 
+const API_URL =
+  "https://taskflow-backend-lalima.onrender.com";
+
 export default function CreateTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,7 +24,7 @@ export default function CreateTask() {
     const loadProfiles = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:5000/profiles"
+          `${API_URL}/profiles`
         );
 
         const data = await response.json();
@@ -60,7 +63,7 @@ export default function CreateTask() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/tasks",
+        `${API_URL}/tasks`,
         {
           method: "POST",
           headers: {
@@ -362,8 +365,6 @@ export default function CreateTask() {
             sans-serif;
         }
 
-        /* SIDEBAR */
-
         .sidebar {
           width: 255px;
           min-height: 100vh;
@@ -456,8 +457,6 @@ export default function CreateTask() {
           margin: 0;
         }
 
-        /* CONTENT */
-
         .content {
           margin-left: 255px;
           width: calc(100% - 255px);
@@ -506,8 +505,6 @@ export default function CreateTask() {
           color: #2563eb;
           border-color: #bfdbfe;
         }
-
-        /* FORM */
 
         .form-wrapper {
           max-width: 850px;
@@ -621,8 +618,6 @@ export default function CreateTask() {
           margin-top: 6px;
         }
 
-        /* MESSAGE */
-
         .message {
           padding: 12px 14px;
           border-radius: 8px;
@@ -648,8 +643,6 @@ export default function CreateTask() {
         .message span {
           font-weight: 800;
         }
-
-        /* BUTTONS */
 
         .form-actions {
           display: flex;
@@ -711,8 +704,6 @@ export default function CreateTask() {
             transform: rotate(360deg);
           }
         }
-
-        /* INFO */
 
         .info-card {
           margin-top: 18px;

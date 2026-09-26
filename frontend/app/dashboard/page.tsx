@@ -13,6 +13,9 @@ type Task = {
   assigned_to: string | null;
 };
 
+const API_URL =
+  "https://taskflow-backend-lalima.onrender.com";
+
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -35,7 +38,7 @@ export default function Dashboard() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/tasks"
+        `${API_URL}/tasks`
       );
 
       const data = await response.json();
@@ -54,7 +57,7 @@ export default function Dashboard() {
       setMessage("Completing task...");
 
       const response = await fetch(
-        `http://127.0.0.1:5000/tasks/${taskId}/complete`,
+        `${API_URL}/tasks/${taskId}/complete`,
         {
           method: "PUT",
         }
@@ -249,7 +252,8 @@ export default function Dashboard() {
             </div>
 
             <span className="task-count">
-              {totalTasks} {totalTasks === 1 ? "task" : "tasks"}
+              {totalTasks}{" "}
+              {totalTasks === 1 ? "task" : "tasks"}
             </span>
           </div>
 
@@ -362,8 +366,6 @@ export default function Dashboard() {
             Helvetica,
             sans-serif;
         }
-
-        /* SIDEBAR */
 
         .sidebar {
           width: 255px;
@@ -508,8 +510,6 @@ export default function Dashboard() {
           color: #ef4444;
         }
 
-        /* CONTENT */
-
         .content {
           margin-left: 255px;
           width: calc(100% - 255px);
@@ -572,8 +572,6 @@ export default function Dashboard() {
           font-size: 13px;
         }
 
-        /* STATS */
-
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -628,8 +626,6 @@ export default function Dashboard() {
           margin: 0;
           font-size: 25px;
         }
-
-        /* TASKS */
 
         .tasks-section {
           background: transparent;
@@ -771,8 +767,6 @@ export default function Dashboard() {
           font-size: 12px;
           font-weight: 700;
         }
-
-        /* EMPTY */
 
         .empty-state {
           background: white;
